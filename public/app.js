@@ -6,8 +6,8 @@
   A publishable/anon key is designed to be public. NEVER put the Supabase
   secret/service_role key in this file.
 */
-const SUPABASE_URL = "https://YOUR_PROJECT_ID.supabase.co";
-const SUPABASE_PUBLIC_KEY = "YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY";
+const SUPABASE_URL = "https://plgucryegwplskwzuwpb.supabase.co";
+const SUPABASE_PUBLIC_KEY = "sb_publishable_flznM9-m0TztZGMbwa-pbg_HenQQa-c";
 
 const $ = (id) => document.getElementById(id);
 const authView = $("authView");
