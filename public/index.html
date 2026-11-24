@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090914">
+  <meta name="description" content="RAZA PREMIUM HOSTING - Publish your websites instantly.">
+  <title>RAZA PREMIUM HOSTING</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+
+<div class="ambient ambient-one"></div>
+<div class="ambient ambient-two"></div>
+
+<header class="topbar">
+  <a class="brand" href="/">
+    <div class="brand-icon">R</div>
+    <div>
+      <div class="brand-name">RAZA<span>.</span></div>
+      <div class="brand-sub">PREMIUM HOSTING</div>
+    </div>
+  </a>
+
+  <div class="top-actions">
+    <div class="online-status">
+      <span class="pulse"></span> SYSTEM ONLINE
+    </div>
+    <div class="profile">AR</div>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="side-label">WORKSPACE</div>
+
+    <a href="#dashboard" class="nav-item active">
+      <span>◈</span> Overview
+    </a>
+
+    <a href="#publisher" class="nav-item">
+      <span>⌘</span> Website Publisher
+    </a>
+
+    <a href="#publisher" class="nav-item">
+      <span>▧</span> Upload Files
+    </a>
+
+    <div class="sidebar-bottom">
+      <div class="side-label">YOUR PLATFORM</div>
+      <div class="mini-card">
+        <div class="mini-icon">✦</div>
+        <strong>RAZA CLOUD</strong>
+        <p>Your own website publishing platform.</p>
+        <span>VERSION 1.0.0</span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content" id="dashboard">
+
+    <section class="welcome">
+      <div>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          YOUR PERSONAL HOSTING PLATFORM
+        </div>
+
+        <h1>Build. Upload.<br><span>Go Live.</span></h1>
+
+        <p>
+          Everything you need to publish your website.
+          Simple, powerful and built for creators.
+        </p>
+      </div>
+
+      <div class="hero-art">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="hero-symbol">R<span>.</span></div>
+        <div class="floating-tag">✦ PREMIUM CLOUD</div>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-top">
+          <span>PLATFORM</span>
+          <span class="stat-icon purple">◈</span>
+        </div>
+        <h2>ACTIVE</h2>
+        <p>Hosting dashboard</p>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-top">
+          <span>PUBLISHING</span>
+          <span class="stat-icon blue">↗</span>
+        </div>
+        <h2>READY</h2>
+        <p>Publish your projects</p>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-top">
+          <span>STORAGE</span>
+          <span class="stat-icon pink">▤</span>
+        </div>
+        <h2>CLOUD</h2>
+        <p>Supabase storage</p>
+      </div>
+    </section>
+
+    <section class="publisher-section" id="publisher">
+
+      <div class="section-heading">
+        <div>
+          <div class="section-label">CREATE SOMETHING AMAZING</div>
+          <h2>Website Publisher <span>✦</span></h2>
+          <p>Upload your files or paste your website code.</p>
+        </div>
+
+        <div class="live-badge">
+          <span></span> PUBLISH CENTER
+        </div>
+      </div>
+
+      <div class="publisher-card">
+
+        <div class="card-heading">
+          <div class="step-number">01</div>
+          <div>
+            <h3>Project Configuration</h3>
+            <p>Give your website its own identity.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="name">WEBSITE NAME</label>
+            <input
+              id="name"
+              type="text"
+              placeholder="My Awesome Website"
+              autocomplete="off"
+            >
+          </div>
+
+          <div class="field">
+            <label for="slug">WEBSITE URL NAME</label>
+            <div class="slug-field">
+              <span>/s/</span>
+              <input
+                id="slug"
+                type="text"
+                placeholder="my-website"
+                autocomplete="off"
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="key">PUBLISHING ACCESS KEY</label>
+          <input
+            id="key"
+            type="password"
+            placeholder="Enter your private publishing key"
+            autocomplete="off"
+          >
+          <small>Your private publishing key is required by the current API.</small>
+        </div>
+
+        <div class="horizontal-line"></div>
+
+        <div class="card-heading">
+          <div class="step-number">02</div>
+          <div>
+            <h3>Upload Your Website</h3>
+            <p>Select a ZIP package or paste HTML directly.</p>
+          </div>
+        </div>
+
+        <label class="upload-zone" for="zip">
+          <div class="upload-icon">⇧</div>
+          <h3>Drop your website ZIP here</h3>
+          <p>Or tap below to browse your files</p>
+          <span class="browse-btn">CHOOSE ZIP FILE</span>
+          <small>ZIP FORMAT · MAXIMUM 4 MB · UP TO 100 FILES</small>
+        </label>
+
+        <input
+          type="file"
+          id="zip"
+          accept=".zip,application/zip"
+          hidden
+        >
+
+        <div id="fileInfo" class="file-info">
+          <span>▤</span>
+          <span id="fileName">No file selected</span>
+        </div>
+
+        <div class="code-divider">
+          <span></span>
+          OR USE HTML CODE
+          <span></span>
+        </div>
+
+        <div class="editor-header">
+          <div>
+            <span class="editor-dot"></span>
+            <span class="editor-dot"></span>
+            <span class="editor-dot"></span>
+            <strong>index.html</strong>
+          </div>
+          <span class="editor-language">HTML</span>
+        </div>
+
+        <textarea
+          id="html"
+          class="code-editor"
+          spellcheck="false"
+          autocapitalize="off"
+          autocomplete="off"
+          placeholder="<!DOCTYPE html>
+<html>
+<head>
+<title>My Website</title>
+</head>
+<body>
+<h1>Hello World!</h1>
+</body>
+</html>"
+        ></textarea>
+
+        <div class="editor-footer">
+          <span>HTML EDITOR</span>
+          <span>YOUR CODE · YOUR WEBSITE</span>
+        </div>
+
+        <div class="publish-area">
+          <button type="button" class="publish-button" id="publish">
+            <span>↗</span>
+            PUBLISH WEBSITE
+            <span class="button-arrow">→</span>
+          </button>
+
+          <p>By publishing, you confirm that you own or have permission to host these files.</p>
+        </div>
+
+        <div class="result" id="result" aria-live="polite"></div>
+
+      </div>
+    </section>
+
+    <section class="bottom-banner">
+      <div class="banner-icon">✦</div>
+      <div>
+        <h3>Your ideas deserve to go live.</h3>
+        <p>Powered by modern cloud technology.</p>
+      </div>
+      <div class="banner-mark">RAZA<span>.</span></div>
+    </section>
+
+    <footer>
+      <div>© 2026 RAZA PREMIUM HOSTING</div>
+      <div>DESIGNED BY <strong>ALI RAZA</strong></div>
+    </footer>
+
+  </main>
+</div>
+
+</body>
+</html>
