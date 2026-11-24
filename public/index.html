@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RAZA PREMIUM HOSTING</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#080b16;color:#fff;min-height:100vh}
+header{padding:22px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #252b40;background:#0c1120}
+.logo{font-size:21px;font-weight:900;letter-spacing:1px}
+.logo span{color:#a78bfa}
+.status{font-size:12px;color:#4ade80}
+main{max-width:1050px;margin:45px auto;padding:0 20px}
+.hero{text-align:center;margin-bottom:35px}
+.hero h1{font-size:clamp(30px,6vw,52px);margin-bottom:13px}
+.hero h1 span{background:linear-gradient(90deg,#8b5cf6,#22d3ee);background-clip:text;color:transparent}
+.hero p{color:#9ca3b8;line-height:1.7}
+.panel{background:#11182a;border:1px solid #29334d;border-radius:20px;padding:25px;margin-bottom:20px;box-shadow:0 15px 45px #0005}
+.panel h2{font-size:19px;margin-bottom:20px}
+label{display:block;font-size:13px;color:#c5cbe0;margin-bottom:9px}
+input,textarea{width:100%;padding:14px;background:#090f1e;color:white;border:1px solid #303a55;border-radius:10px;outline:none;margin-bottom:19px;font-size:14px}
+input:focus,textarea:focus{border-color:#8b5cf6}
+textarea{height:210px;resize:vertical;font-family:monospace;line-height:1.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.upload{border:2px dashed #55518d;border-radius:13px;padding:25px;text-align:center;background:#171a32}
+.upload p{color:#a5a9c2;font-size:13px;margin:10px 0}
+button{border:0;cursor:pointer;border-radius:10px;padding:14px 20px;font-weight:bold}
+.publish{width:100%;background:linear-gradient(100deg,#7c3aed,#2563eb);color:white;font-size:16px;margin-top:5px}
+.publish:disabled{opacity:.5;cursor:wait}
+.result{display:none;background:#0c2c27;border:1px solid #176b55;padding:18px;border-radius:12px;margin-top:20px;overflow-wrap:anywhere}
+.result a{color:#5eead4}
+.error{background:#361b27;border-color:#8d3450}
+footer{text-align:center;padding:30px;color:#7e879f;font-size:12px}
+small{color:#8d98b5}
+@media(max-width:650px){
+.grid{grid-template-columns:1fr}
+main{margin:28px auto}
+.panel{padding:18px}
+header{padding:18px}
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">RAZA <span>PREMIUM HOSTING</span></div>
+ <div class="status">● HOSTING PANEL</div>
+</header>
+
+<main>
+ <section class="hero">
+  <h1>Launch Your <span>Website.</span></h1>
+  <p>Upload your code. Publish your website.<br>
+  Your own premium hosting platform.</p>
+ </section>
+
+ <section class="panel">
+  <h2>01. Website Details</h2>
+  <div class="grid">
+   <div>
+    <label>Website Name</label>
+    <input id="name" placeholder="My Awesome Website">
+   </div>
+   <div>
+    <label>Website URL Name</label>
+    <input id="slug" placeholder="my-awesome-website">
+   </div>
+  </div>
+
+  <label>Publishing Access Key</label>
+  <input id="key" type="password" placeholder="Enter your private publishing key">
+  <small>This key is checked by your secure backend.</small>
+ </section>
+
+ <section class="panel">
+  <h2>02. Upload Website</h2>
+  <div class="upload">
+   <div style="font-size:32px">📦</div>
+   <strong>Upload your website ZIP</strong>
+   <p>ZIP containing index.html, CSS, JS and assets (max 4 MB)</p>
+   <input type="file" id="zip" accept=".zip" style="margin-top:15px;margin-bottom:0">
+  </div>
+  <p style="text-align:center;color:#8992ab;margin:18px">OR PASTE YOUR HTML CODE</p>
+  <label>HTML Code</label>
+  <textarea id="html" placeholder="<!DOCTYPE html>
+<html>
+<head>
+<title>My Website</title>
+</head>
+<body>
+<h1>Hello World!</h1>
+</body>
+</html>"></textarea>
+
+  <button class="publish" id="publish">🚀 PUBLISH WEBSITE</button>
+  <div class="result" id="result"></div>
+ </section>
+</main>
+
+<footer>POWERED BY ALI RAZA · RAZA PREMIUM HOSTING © 2026</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+$("name").addEventListener("input", () => {
+ if (!$("slug").dataset.edited) {
+  $("slug").value = $("name").value.toLowerCase()
+   .trim().replace(/[^a-z0-9]+/g,"-")
+   .replace(/^-|-$/g,"").slice(0,40);
+ }
+});
+
+$("slug").addEventListener("input", () => {
+ $("slug").dataset.edited = "true";
+ $("slug").value = $("slug").value.toLowerCase()
+  .replace(/[^a-z0-9-]/g,"").slice(0,40);
+});
+
+$("publish").addEventListener("click", async () => {
+ const btn = $("publish");
+ const result = $("result");
+ const name = $("name").value.trim();
+ const slug = $("slug").value.trim();
+ const key = $("key").value;
+ const zip = $("zip").files[0];
+ const html = $("html").value;
+
+ result.style.display = "block";
+ result.className = "result";
+
+ if (!name || !slug || !key) {
+  result.textContent = "Please complete all required fields.";
+  result.classList.add("error");
+  return;
+ }
+
+ if (!zip && !html.trim()) {
+  result.textContent = "Upload a ZIP or enter HTML code.";
+  result.classList.add("error");
+  return;
+ }
+
+ if (zip && zip.size > 4 * 1024 * 1024) {
+  result.textContent = "ZIP must be under 4 MB.";
+  result.classList.add("error");
+  return;
+ }
+
+ btn.disabled = true;
+ btn.textContent = "PUBLISHING...";
+
+ try {
+  const payload = { name, slug };
+
+  if (zip) {
+   const buffer = await zip.arrayBuffer();
+   const bytes = new Uint8Array(buffer);
+   let binary = "";
+   for (let i = 0; i < bytes.length; i += 32768) {
+    binary += String.fromCharCode(...bytes.subarray(i,i+32768));
+   }
+   payload.zipBase64 = btoa(binary);
+  } else {
+   payload.html = html;
+  }
+
+  const response = await fetch("/api/publish", {
+   method: "POST",
+   headers: {
+    "Content-Type": "application/json",
+    "x-publish-key": key
+   },
+   body: JSON.stringify(payload)
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) throw new Error(data.error || "Publishing failed");
+
+  const url = new URL(data.url, location.origin).href;
+  result.innerHTML = "";
+  const heading = document.createElement("strong");
+  heading.textContent = "🎉 Website Published Successfully!";
+  const link = document.createElement("a");
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noopener";
+  link.textContent = url;
+  const copy = document.createElement("button");
+  copy.textContent = "Copy Link";
+  copy.style.marginTop = "12px";
+  copy.onclick = () => navigator.clipboard.writeText(url);
+  result.append(heading, document.createElement("br"), link,
+   document.createElement("br"), copy);
+
+ } catch (error) {
+  result.textContent = "❌ " + error.message;
+  result.classList.add("error");
+ } finally {
+  btn.disabled = false;
+  btn.textContent = "🚀 PUBLISH WEBSITE";
+ }
+});
+</script>
+</body>
+</html>
