@@ -1,0 +1,15 @@
+{
+  "name": "raza-premium-hosting",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0",
+    "adm-zip": "^0.5.16"
+  },
+  "devDependencies": {
+    "vercel": "^39.2.0"
+  }
+}
